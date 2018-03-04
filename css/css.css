@@ -2,3 +2,93 @@
 *{margin: 0;padding: 0;box-sizing: border-box;}
 ul,ol{list-style: none;}
 img{border: none;}
+body{background: #6ea7b2;font-family: 微软雅黑;}
+a{text-decoration: none;}
+em{font-style: normal;color: #52abdb;}
+/*公共样式*/
+
+.wrap{width: 1200px;margin: 0 auto; background: #fff;height: 712px;border-radius: 10px;overflow: hidden;}
+/*wrapTop  begin*/
+
+.wrapTop{height: 70px;padding: 0 30px;overflow: hidden;}
+.logo{display: block;margin-top: 18px;float: left;margin-right: 95px;}
+.wrapTRight{float: right;margin-top: 20px;}
+.set{background: url("../images/setBg_03.png") no-repeat center;display: inline-block;width: 16px;height: 16px;vertical-align: middle;}
+.headImg{width: 32px;height: 32px;overflow: hidden;border-radius: 50%;margin-right: 37px;}
+.wrapTR-User{display: inline-block;vertical-align: middle;position: relative;margin-right: 14px;}
+.wrapTR-User:before{content: '';width: 1px;height: 22px;background: #e0e6e7;position: absolute;right: 0;top: 50%;margin-top: -11px;}
+.wrapTR-User:after{content: '';width: 10px;height: 6px;position: absolute;top: 50%;left: 42px;margin-top: -3px;background: url("../images/jt.png") no-repeat center;}
+.wrapTMid{overflow: hidden;margin-top: 16px;}
+.wrapTMid div{display: inline-block;text-align: center;background: #ef8989;border-radius: 25px;padding: 0 20px;}
+.wrapTMid div em{display: inline-block;height: 40px;line-height: 40px;color: #fff;font-size: 14px;padding-left: 35px;background: no-repeat left center;}
+.wrapTMid .hintConnect em{background-image: url("../images/csico.png")}
+.wrapTMid .hintDelOk{background: #86ce8b;}
+.wrapTMid .hintDelOk em{background-image: url("../images/delico_14.png")}
+.wrapTMid .hintSelectFile em{background-image: url("../images/xzwjico_16.png")}
+.wrapTMid .hintSelectFile{background: #f3a960;}
+
+/*wrapTop  END */
+
+/* funBlock  begin*/
+
+
+.funBlock{background: #ecf0f6;padding: 10px 20px;border-top: 1px #d0d9de solid;border-bottom: 1px #d0d9de solid;}
+.funBlockLeft{overflow: hidden;}
+.funBlockLeft a{height: 36px;line-height: 36px;text-align: center;border:1px #d0d9de solid;background: #fff;padding: 0 20px;border-radius: 5px;margin-right: 10px;font-size: 14px;display: inline-block;position: relative;overflow: hidden;z-index: 2;}
+.funBlockLeft a:before{content: '';width: 0;position: absolute;top: 0;left: 50%;background: #52abdb;height: 100%;opacity: 0;z-index: 1;}
+.funBlockLeft a:hover:before{width: 100%;left: 0;opacity: 1;}
+.funBlockLeft a em{display: inline-block;padding-left: 35px;position: relative;color: #66757f;z-index: 3;}
+.funBlockLeft a:hover em{color: #fff;}
+.funBlockLeft a em:before{content: '';width: 20px;height: 20px;background: url("../images/xiazaiIc.png") no-repeat left center;position: absolute;top: 50%;margin-top: -10px;left: 0;}
+.funBlockLeft a:nth-child(2) em:before{background-image: url("../images/fxIco.png");}
+.funBlockLeft a:nth-child(3) em:before{background-image: url("../images/ydIco.png");}
+.funBlockLeft a:nth-child(4) em:before{background-image: url("../images/cmmIco.png");}
+.funBlockLeft a:nth-child(5) em:before{background-image: url("../images/delIco.png");}
+.funBlockLeft a:nth-child(6) em:before{background-image: url("../images/xjwjj.png");}
+.funBlockLeft a:hover em:before{background-position: right center;}
+
+.funBlockLeft a:last-child{padding:0 10px;}
+.funBlockLeft a:last-child em{height: 36px;padding: 0 10px;}
+.funBlockLeft a:last-child em:before{background-image: url("../images/sxIco.png");}
+
+.funBlockRight{float: right;width: 110px;overflow: hidden;}
+.funBlockR-1{float: left;}
+.funBlockR-2{float: right;cursor: pointer;}
+.funBlockR-2Top{width: 56px;height: 36px;background: #fff;border: 1px #ddd solid;border-radius: 3px;position: relative;}
+.funBlockR-2Top:before{content: '';width: 16px;height: 16px;background: url("../images/pxico_03.png") no-repeat;position: absolute;top: 50%;left: 10px;margin-top: -8px;}
+.funBlockR-2Top:after{content: '';width: 10px;height: 6px;position: absolute;top: 50%;right: 10px;margin-top: -3px;background: url("../images/jt.png") no-repeat center;}
+.funBlockR-2:hover .funBlockR-2Top:after{transform: rotate(180deg);}
+
+/* funBlock  END */
+
+
+/*  结构 */
+
+.contBoxLeft{width: 258px;border-right: 2px #e1e8ed solid;float: left;height: 580px;padding: 20px;}
+.contBoxRight{overflow: hidden;}
+.contBoxR-Top{width: 100%;height: 48px;border-bottom: 2px #e1e8ed solid;line-height: 48px;padding-left: 15px;}
+
+.crumbs{display: inline-block;vertical-align: middle;}
+.contBoxRTopInput{vertical-align: middle;}
+.crumbs i{display: inline-block;vertical-align:middle;width: 11px;height: 20px;background: url("../images/crumbsI_14.png") no-repeat center;}
+.crumbs a{display: inline-block;padding: 0 15px;font-size: 14px;color: #000;position: relative;margin-left: 10px;}
+.crumbs .crumbsEnd{color: #55addc;}
+.crumbs .crumbsEnd:before{content: '';width: 100%;height: 2px;background: #55addc;position: absolute;left: 0;bottom: 2px;}
+
+.treeBTwo{padding-left: 25px;}
+.treeBThree{padding-left: 25px;}
+.treeBox li span{display: block;padding-left: 20px;background: url("../images/wjjtclose_11.png") no-repeat left center;}
+.treeBox li .wjjtOpen{background-image: url("../images/wjjt_07.png");}
+.treeBox li em{font-size: 14px;color: #66757f;padding-left: 24px;background:url("../images/wjclosebg_07.png") no-repeat left center;height: 33px;line-height: 33px;}
+.treeBox li .wjOpen{background-image: url("../images/wjopen_07.png");}
+
+.contBoxR-Bottom{background: #f5f8fa;width: 100%;height: 530px;}
+
+
+
+
+/*缓动*/
+
+:before,:after,a,.funBlockLeft a em{transition: .4s;}
+
+
