@@ -34,7 +34,7 @@ em{font-style: normal;color: #52abdb;}
 
 .funBlock{background: #ecf0f6;padding: 10px 20px;border-top: 1px #d0d9de solid;border-bottom: 1px #d0d9de solid;}
 .funBlockLeft{overflow: hidden;}
-.funBlockLeft a{height: 36px;line-height: 36px;text-align: center;border:1px #d0d9de solid;background: #fff;padding: 0 20px;border-radius: 5px;margin-right: 10px;font-size: 14px;display: inline-block;position: relative;overflow: hidden;z-index: 2;}
+.funBlockLeft a{height: 36px;line-height: 36px;text-align: center;/*border:1px #d0d9de solid;*/background: #fff;padding: 0 20px;border-radius: 5px;margin-right: 10px;font-size: 14px;display: inline-block;position: relative;overflow: hidden;z-index: 2;box-shadow: 0 0 2px #d0d9de;}
 .funBlockLeft a:before{content: '';width: 0;position: absolute;top: 0;left: 50%;background: #52abdb;height: 100%;opacity: 0;z-index: 1;}
 .funBlockLeft a:hover:before{width: 100%;left: 0;opacity: 1;}
 .funBlockLeft a em{display: inline-block;padding-left: 35px;position: relative;color: #66757f;z-index: 3;}
