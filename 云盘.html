@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>云盘</title>
     <link rel="stylesheet" type="text/css" href="css/css.css">
-    <script src="js/js.js"></script>
 </head>
 <body>
 
@@ -31,11 +30,20 @@
     <!--  wrapTop  END   头部  -->
     <!--  funBlock  beign   功能块 -->
     <div class="funBlock">
-
         <div class="funBlockRight">
             <div class="funBlockR-1"></div>
             <div class="funBlockR-2">
-                <div class="funBlockR-2Top"></div>
+                <div class="funBlockR-2Top">
+                    <div class="funBlockR-2Tcont"></div>
+                </div>
+
+                <div class="funBlockR-2Botm">
+                    <ul class="funBlockR-2BList">
+                        <li class="sjpxLi"><em>按时间排序</em></li>
+                        <li class="zmpxLi"><em>按字母顺序</em></li>
+                        <li class="sltLi"><em>显示缩略图</em></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -56,44 +64,26 @@
     <div class="contBox">
 
         <!--  contBoxLeft  begin   结构左侧树 -->
-
         <div class="contBoxLeft">
-            <ul class="treeBox">
-                <li>
-                    <span class="wjjtOpen"><em class="wjOpen">第1层</em></span> <!-- 第一层标题 -->
-                    <ul class="treeBTwo">
-                        <li>
-                            <span class="wjjtOpen"><em class="wjOpen">第2层</em></span>
-                            <ul class="treeBThree">
-                                <li><span><em>第3层</em></span></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="wjjtOpen"><em class="wjOpen">第2层</em></span>
-                            <ul class="treeBThree">
-                                <li><span><em>第3层</em></span></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="wjjtOpen"><em class="wjOpen">第1层</em></span> <!-- 第一层标题 -->
-                    <ul class="treeBTwo">
-                        <li>
-                            <span class="wjjtOpen"><em class="wjOpen">第2层</em></span>
-                            <ul class="treeBThree">
-                                <li><span><em>第3层</em></span></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="wjjtOpen"><em class="wjOpen">22</em></span>
-                            <ul class="treeBThree">
-                                <li><span><em>第3层</em></span></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <!--<ul class="treeBox">
+                 <li>
+                     <span class="wjjtOpen"><em class="wjOpen">第1层</em></span>
+                     <ul class="treeBTwo">
+                         <li>
+                             <span class="wjjtOpen"><em class="wjOpen">第2层</em></span>
+                             <ul class="treeBThree">
+                                 <li><span><em>第3层</em></span></li>
+                             </ul>
+                         </li>
+                         <li>
+                             <span class="wjjtOpen"><em class="wjOpen">第2层</em></span>
+                             <ul class="treeBThree">
+                                 <li><span><em>第3层</em></span></li>
+                             </ul>
+                         </li>
+                     </ul>
+                 </li>
+             </ul>-->
         </div>
         <!--  contBoxLeft  END    结构左侧树  -->
         <!-- 内容右侧  contBoxRight  begin   -->
@@ -106,7 +96,52 @@
             <!--  contBoxR-Top  END   -->
 
             <!--  contBoxR-Bottom  begin  -->
-            <div class="contBoxR-Bottom"></div>
+            <div class="contBoxR-Bottom">
+
+                <!--  选择存储位置  begin  -->
+                <div class="storageLocation">
+                    <div class="SL-Top">选择存储位置<i class="SL-TopClose"></i></div>
+
+                    <div class="SL-Tit">JS基础课程</div>
+
+                    <div class="SL-cont"></div>
+
+                    <div class="SL-control">
+                        <a href="javascript:;"><em>确定</em></a>
+                        <a href="javascript:;"><em>取消</em></a>
+                    </div>
+                </div>
+                <!--  选择存储位置  END    -->
+
+                <!--  是否删除板块   begin  -->
+
+                <div class="isDel">
+
+                    <i class="SL-TopClose"></i>
+
+                    <div class="idDelTop">
+                        <p class="idDelTopTit-1">确定要删除这个文件夹吗？</p>
+                        <p class="idDelTopTit-2">已删除的文件可以在回收站找到</p>
+                    </div>
+                    <div class="SL-control isDel-control">
+                        <a href="javascript:;"><em>确定</em></a>
+                        <a href="javascript:;"><em>取消</em></a>
+                    </div>
+
+                </div>
+
+                <!--  是否删除板块   END    -->
+
+                <!--  正在删除板块   begin  -->
+                <div class="deling">
+                    <p class="delingTit">正在删除 0/15</p>
+                </div>
+                <!--  正在删除板块   END    -->
+
+
+
+
+            </div>
             <!--  contBoxR-Bottom  END    -->
 
 
@@ -123,6 +158,7 @@
 
 </div>
 
-
+<script src="js/data.js"></script>  <!--  数据  -->
+<script src="js/js.js"></script>
 </body>
 </html>

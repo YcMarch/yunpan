@@ -2,7 +2,7 @@
 *{margin: 0;padding: 0;box-sizing: border-box;}
 ul,ol{list-style: none;}
 img{border: none;}
-body{background: #6ea7b2;font-family: 微软雅黑;}
+body{background: #6ea7b2;font-family: 微软雅黑;font-size: 14px;}
 a{text-decoration: none;}
 em{font-style: normal;color: #52abdb;}
 /*公共样式*/
@@ -51,20 +51,45 @@ em{font-style: normal;color: #52abdb;}
 .funBlockLeft a:last-child em{height: 36px;padding: 0 10px;}
 .funBlockLeft a:last-child em:before{background-image: url("../images/sxIco.png");}
 
-.funBlockRight{float: right;width: 110px;overflow: hidden;}
+.funBlockRight{float: right;width: 110px;/*overflow: hidden;*/}
 .funBlockR-1{float: left;}
-.funBlockR-2{float: right;cursor: pointer;}
-.funBlockR-2Top{width: 56px;height: 36px;background: #fff;border: 1px #ddd solid;border-radius: 3px;position: relative;}
-.funBlockR-2Top:before{content: '';width: 16px;height: 16px;background: url("../images/pxico_03.png") no-repeat;position: absolute;top: 50%;left: 10px;margin-top: -8px;}
-.funBlockR-2Top:after{content: '';width: 10px;height: 6px;position: absolute;top: 50%;right: 10px;margin-top: -3px;background: url("../images/jt.png") no-repeat center;}
-.funBlockR-2:hover .funBlockR-2Top:after{transform: rotate(180deg);}
+
+.funBlockR-1{width: 36px;height: 36px;background: #fff url("../images/xsbg_03.png") no-repeat center;border: 1px #ddd solid;border-radius: 3px;cursor: pointer;}
+.funBlockR-1two,.funBlockR-1:hover{background:#55addc url("../images/xstwo_18.png") no-repeat center;border-color: #55addc;}
+
+.funBlockR-2{float: right;cursor: pointer;position: relative;}
+.funBlockR-2Top{width: 56px;height: 36px;background: #fff;border: 1px #ddd solid;border-radius: 3px;}
+.funBlockR-2Tcont{position: relative;width: 56px;height: 36px;}
+.funBlockR-2Tcont:before{content: '';width: 16px;height: 16px;background: url("../images/pxico_03.png") no-repeat;position: absolute;top: 50%;left: 10px;margin-top: -8px;}
+.funBlockR-2Tcont:after{content: '';width: 10px;height: 6px;position: absolute;top: 50%;right: 10px;margin-top: -3px;background: url("../images/jt.png") no-repeat center;}
+.funBlockR-2:hover .funBlockR-2Tcont:after{transform: rotate(360deg);background-image: url("../images/pxjt_23.png");}
+.funBlockR-2:hover .funBlockR-2Top{height: 50px;border-bottom: none;border-radius: 3px 3px 0 0;}
+.funBlockR-2Botm{width: 130px;height: 0;background: #fff;position: absolute;right: 0;top: 60px;z-index: 9;/*box-shadow: 0 0 1px #52abdb;*/opacity: 0;/*overflow: hidden;*/ border-radius: 5px 0 5px 5px;}
+.funBlockR-2Botm:before{content: '';width: 54px;height: 0;background: #fff;position: absolute;right: 0;top: -1px;z-index: 9;}
+.funBlockR-2:hover .funBlockR-2Botm{top: 50px;height: auto;opacity: 1;border:1px #52abdb solid;}
+.funBlockR-2:hover .funBlockR-2Botm:before{height: 1px;}
+.funBlockR-2:hover .funBlockR-2Top{border-color: #52abdb;}
+.funBlockR-2:hover .funBlockR-2Tcont:before{background-image: url("../images/pxbg_20.png");}
+.funBlockR-2BList{height: 0;overflow: hidden;}
+.funBlockR-2:hover .funBlockR-2BList{height: auto;}
+.funBlockR-2BList li{height: 37px;line-height: 37px;position: relative;}
+.funBlockR-2BList li em{display: inline-block;width: 100%;font-size: 14px;color: #66757f;padding-left: 40px;position: relative;z-index: 2;}
+.funBlockR-2BList li:before{content: '';width: 0;height: 100%;background: #e1e8ed;position: absolute;left: 0;top: 0;}
+.funBlockR-2BList li:hover:before{width: 100%;}
+.funBlockR-2BList li:hover em{color: #5eb1de;}
+.funBlockR-2BList li em:before{content: '';width: 18px;height: 18px;position: absolute;left: 10px;top: 50%;margin-top: -9px;background:no-repeat left center;}
+.funBlockR-2BList li:hover em:before{background-position: right center;}
+.funBlockR-2BList .sjpxLi em:before{background-image: url("../images/sjbg.png")}
+.funBlockR-2BList .zmpxLi em:before{background-image: url("../images/dxpx.png")}
+.funBlockR-2BList .sltLi em:before{background-image: url("../images/xsbg.png")}
+
 
 /* funBlock  END */
 
 
 /*  结构 */
 
-.contBoxLeft{width: 258px;border-right: 2px #e1e8ed solid;float: left;height: 580px;padding: 20px;}
+.contBoxLeft{width: 258px;border-right: 2px #e1e8ed solid;float: left;height: 580px;padding: 20px 0;}
 .contBoxRight{overflow: hidden;}
 .contBoxR-Top{width: 100%;height: 48px;border-bottom: 2px #e1e8ed solid;line-height: 48px;padding-left: 15px;}
 
@@ -75,20 +100,52 @@ em{font-style: normal;color: #52abdb;}
 .crumbs .crumbsEnd{color: #55addc;}
 .crumbs .crumbsEnd:before{content: '';width: 100%;height: 2px;background: #55addc;position: absolute;left: 0;bottom: 2px;}
 
-.treeBTwo{padding-left: 25px;}
-.treeBThree{padding-left: 25px;}
-.treeBox li span{display: block;padding-left: 20px;background: url("../images/wjjtclose_11.png") no-repeat left center;}
+.treeBTwo{/*padding-left: 25px;*/}
+.treeBThree{/*padding-left: 25px;*/}
+.treeBox li span{display: block;padding-left: 40px;background:no-repeat 20px center;}
+.treeBox li .wjjtyou{background-image: url("../images/wjjtclose_11.png");}
+/*.treeBox li span:hover{background-color: #e1e8ed;}*/
+/*.treeBTwo li span{padding-left: 75px;background-position: 50px center;}
+.treeBThree li span{padding-left: 100px;background-position: 75px center;}*/
+.treeBox li ul{padding-left: 25px;}
 .treeBox li .wjjtOpen{background-image: url("../images/wjjt_07.png");}
 .treeBox li em{font-size: 14px;color: #66757f;padding-left: 24px;background:url("../images/wjclosebg_07.png") no-repeat left center;height: 33px;line-height: 33px;}
 .treeBox li .wjOpen{background-image: url("../images/wjopen_07.png");}
 
-.contBoxR-Bottom{background: #f5f8fa;width: 100%;height: 530px;}
+.contBoxR-Bottom{background: #f5f8fa;width: 100%;height: 530px;position: relative;}
+.storageLocation{width: 406px;height: 416px;border: 2px #55addc solid;border-radius: 5px;background: #fff;position: absolute;top: 50%;left:50%;padding: 0 20px;box-shadow: 0 0 5px #55addc;margin-top: -208px;margin-left: -203px;}
+.SL-Top{height: 55px;line-height: 55px;position: relative;}
+.SL-TopClose{position: absolute;right: 0;top: 50%;font-style: normal;width: 15px;height: 15px;background: url("../images/close.png") no-repeat center;margin-top: -7.5px;cursor: pointer;}
+.SL-Tit{font-size: 14px;color: #66757f;padding-left: 34px;height: 22px;line-height: 22px;background: url("../images/st-titbg_03.png") no-repeat left center;margin-bottom: 18px;}
+.SL-cont{height: 238px;width: 100%;border:1px #ddd solid;margin-bottom: 25px;}
+.SL-control{text-align: center;}
+.SL-control a{display: inline-block;margin-left: 24px;width: 78px;height: 28px;box-shadow: 0 0 2px #55addc;color: #55addc;line-height: 28px;border-radius: 3px;position: relative;overflow: hidden;}
+.SL-control a:before{content: '';width: 0;position: absolute;left: 50%;top: 0;background:#55addc;height: 100%;opacity: 0;z-index: 1;}
+.SL-control a:hover:before{width: 100%;left: 0;opacity: 1;}
+.SL-control a:hover em{z-index: 2;color: #fff;position: relative;}
+
+.isDel{width: 316px;height: 176px;border-radius: 5px;border:2px #55addc solid;background: #fff;position: absolute;top: 50%;left: 50%;box-shadow: 0 0 5px #55addc;text-align: center;margin-top: -88px;margin-left: -158px; }
+.idDelTopTit-1{font-size: 16px;color: #000;margin-bottom: 16px;}
+.idDelTopTit-2{color: #000;font-size: 12px;}
+.idDelTop{text-align: left;display: inline-block;padding-left: 55px;background: url("../images/whbg.png") no-repeat left center;margin-top: 42px;margin-bottom: 20px;}
+.isDel .SL-TopClose{position: absolute;top: 16px;right: 16px;}
+
+.deling{width: 226px;height: 76px;border-radius: 5px;border:2px #55addc solid;background: #fff;position: absolute;top: 50%;left: 50%;box-shadow: 0 0 5px #55addc;text-align: center;margin-top: -38px;margin-left: -113px;padding-top: 20px;}
+.delingTit{display: inline-block;padding-left: 60px;font-size: 16px;color: #000;height: 35px;line-height: 35px;position: relative;}
+.delingTit:before{content: '';width: 35px;height: 35px;background: url("../images/deling_11.png") no-repeat center;position: absolute;left: 0;top: 0;animation:deling 1.5s linear infinite;}
 
 
 
 
 /*缓动*/
 
-:before,:after,a,.funBlockLeft a em{transition: .4s;}
+:before,:after,a,.funBlockLeft a em,.SL-control a em,.funBlockR-2Top,.funBlockR-1,.funBlockR-2Botm{transition: .4s;}
+
+/*动画*/
+@keyframes deling
+{
+    0%   {transform: rotate(0);}
+    100% {transform: rotate(360deg);}
+}
 
 
