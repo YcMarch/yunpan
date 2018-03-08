@@ -67,18 +67,18 @@
         <div class="contBoxLeft">
             <!--<ul class="treeBox">
                  <li>
-                     <span class="wjjtOpen"><em class="wjOpen">第1层</em></span>
-                     <ul class="treeBTwo">
+                     <div><span><em>第1层</em></span></div>
+                     <ul>
                          <li>
-                             <span class="wjjtOpen"><em class="wjOpen">第2层</em></span>
-                             <ul class="treeBThree">
-                                 <li><span><em>第3层</em></span></li>
+                             <div><span><em>第2层</em></span></div>
+                             <ul>
+                                 <li><div><span><em>第3层</em></span></div></li>
                              </ul>
                          </li>
                          <li>
-                             <span class="wjjtOpen"><em class="wjOpen">第2层</em></span>
-                             <ul class="treeBThree">
-                                 <li><span><em>第3层</em></span></li>
+                             <div><span><em>第2层</em></span></div>
+                             <ul>
+                                 <li><div><span><em>第3层</em></span></div></li>
                              </ul>
                          </li>
                      </ul>
@@ -90,16 +90,37 @@
         <div class="contBoxRight">
             <!--  contBoxR-Top  begin  -->
             <div class="contBoxR-Top">
-                <input type="checkbox" class="contBoxRTopInput">
-                <div class="crumbs"><a href="javascript:;">微云</a><i></i><a href="javascript:;">JS课程</a><i></i><a href="javascript:;">CSS课程</a><i></i><a class="crumbsEnd" href="javascript:;">JS基础课程</a> </div>
+                <i class="contBoxRTopInput"></i>
+                <div class="crumbs"><!--<a href="javascript:;">微云</a><i></i><a href="javascript:;">JS课程</a><i></i><a href="javascript:;">CSS课程</a><i></i><a class="crumbsEnd" href="javascript:;">JS基础课程</a> --></div>
             </div>
             <!--  contBoxR-Top  END   -->
 
             <!--  contBoxR-Bottom  begin  -->
             <div class="contBoxR-Bottom">
 
+                <!--   无内容块  begin  -->
+                <div class="NoCont">
+                    <div class="NoContImg"></div>
+                    <p class="NoContTit">暂无文件</p>
+                    <p class="NoContBri">请点击左上角的“上传”按钮添加</p>
+                </div>
+                <!--   无内容块  END    -->
+
+                <!--  板块样式1   begin  -->
+
+                <ul class="TabStyleOne">
+                   <!-- <li>
+                        <div class="TabStyleOneTable">
+                            <div class="wjjImg"><img src="images/wjjimg_03.png"></div>
+                            <div class="wjjTit">JS基础课程</div>
+                        </div>
+                    </li>-->
+                </ul>
+
+                <!--  板块样式1   END    -->
+
                 <!--  选择存储位置  begin  -->
-                <div class="storageLocation">
+                <div class="storageLocation" style="display: none;">
                     <div class="SL-Top">选择存储位置<i class="SL-TopClose"></i></div>
 
                     <div class="SL-Tit">JS基础课程</div>
@@ -115,7 +136,7 @@
 
                 <!--  是否删除板块   begin  -->
 
-                <div class="isDel">
+                <div class="isDel"  style="display: none;">
 
                     <i class="SL-TopClose"></i>
 
@@ -133,25 +154,16 @@
                 <!--  是否删除板块   END    -->
 
                 <!--  正在删除板块   begin  -->
-                <div class="deling">
+                <div class="deling"  style="display: none;">
                     <p class="delingTit">正在删除 0/15</p>
                 </div>
                 <!--  正在删除板块   END    -->
 
-
-
-
             </div>
             <!--  contBoxR-Bottom  END    -->
 
-
         </div>
-
         <!-- 内容右侧  contBoxRight  END     -->
-
-
-
-
 
     </div>
     <!--  contBox  END   内容块  -->
@@ -159,6 +171,7 @@
 </div>
 
 <script src="js/data.js"></script>  <!--  数据  -->
+<script src="js/tools.js"></script>
 <script src="js/js.js"></script>
 </body>
 </html>

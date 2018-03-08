@@ -1,0 +1,22 @@
+var initId = 0 ; // 定义初始值 id 第一层的数据 0
+
+    var d = data[0];
+
+    var twoD = getChildsById(initId);
+    //  生成结构
+    var treeBox = '<ul class="treeBox">';
+        treeBox += `
+        <li><div><span><em>${d.title}</em></span></div>`;
+        if(twoD.length > 0){
+            treeBox += '<ul>';
+            for(var i =0;i<twoD.length;i++){
+                treeBox += `<li><div><span><em>${twoD[i].title}</em></span></div>`
+
+                treeBox += `</li>`
+            }
+            treeBox += '</ul>';
+        }
+        treeBox += `</li>`;
+        treeBox += '</ul>';
+
+    contBoxLeft.innerHTML = treeBox;
