@@ -140,7 +140,7 @@ em{font-style: normal;color: #52abdb;}
 .NoContTit{color: #66757f;font-size: 24px;}
 .NoContBri{color: #66757f;font-size: 14px;line-height: 30px;}
 
-.TabStyleOne{width: 100%;height: 100%;padding: 40px 0;overflow: auto;}
+.TabStyleOne{width: 100%;height: 100%;padding: 40px 0;overflow: auto;position: relative;}
 .TabStyleOne li{width: 178px;height: 178px;background: #ebeff0;border-radius: 3px;overflow: hidden;border:1px #ebeff0 solid;display: table;text-align: center;vertical-align: middle;float: left;margin-bottom: 40px;margin-left: 40px;cursor: pointer;}
 .TabStyleOne li:hover,.TabStyleOne li.act{box-shadow: 0 0 3px #55addc;border-color: #55addc;background: #fff;}
 .TabStyleOneTable{display: table-cell;vertical-align: middle;position: relative;}
@@ -150,6 +150,8 @@ em{font-style: normal;color: #52abdb;}
 .TabStyleOneTable i.act{border-color: #52abdb;}
 .TabStyleOneTable i.act:before{content: '✔';color: #55addc;position: absolute;top: -2px;left: -1px;}
 .TabStyleOne li:hover .TabStyleOneTable i,.TabStyleOne li.act .TabStyleOneTable i{opacity: 1;}
+
+.regionDiv{width: 0;height:0;background: #52abdb;position: absolute;left: 0;top: 0;opacity: .5;}
 
 
 
