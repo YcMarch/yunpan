@@ -16,6 +16,7 @@ window.onload = function () {
         return arr;  //  把 arr return出去
     }
     var contBoxLeft = document.querySelector('.contBoxLeft');
+    //var currentId = 0;
     var initId = -1; // 初始的id  设置为 -1
 
     //  生成左侧树形菜单----------------------------------
@@ -90,6 +91,7 @@ window.onload = function () {
                         <div data-id = '${childensId[i].id}' class="TabStyleOneTable">
                             <div class="wjjImg"><img src="images/wjjimg_03.png"></div>
                             <div class="wjjTit">${childensId[i].title}</div>
+                            <input type="text" class="wjjInput">
                             <i></i>
                         </div>
                     </li>
@@ -129,6 +131,7 @@ window.onload = function () {
             TabStyleOne.innerHTML = FileHtml;
         }
         positionDiv(id);
+        fileID = id
     });
 
     //  面包屑的交互--------------------------------
@@ -150,47 +153,47 @@ window.onload = function () {
                 TabStyleOne.innerHTML = FileHtml;
             }
             positionDiv(id)
+            fileID = id
         }
     });
 
     //  文件区域交互
     var actNum = 0;
     t.on(TabStyleOne,'click',function (ev) {
-
         var target = ev.target;
         if(target.classList.contains('TabStyleOne')) return;
         if(target.classList.contains('wjjImg') || target.classList.contains('wjjTit')){
             target = target.parentNode;
         }else if(target.nodeName == 'IMG'){
             target = target.parentNode.parentNode;
-        }{
-            actNum = 0;
-            contBoxRTopInput.classList.remove('act');
         }
         if(target.nodeName == 'I'){
             target = ev.target;
             var targetParent = target.parentNode.parentNode;
+
             if(targetParent.classList.contains('act')){
+
                 actNum--;
-                if(actNum<0){
-                    actNum = 0;
-                }
                 target.classList.remove('act');
                 targetParent.classList.remove('act');
                 contBoxRTopInput.classList.remove('act');
             }else {
+                actNum++;
                 target.classList.add('act');
                 targetParent.classList.add('act');
-                actNum++;
                 if(actNum==TabStyleOneTable.length){
                     contBoxRTopInput.classList.add('act');
                 }
             }
             return
         }
+        if(target.nodeName == 'INPUT'){
+            return
+        }
         var id = target.dataset.id;
         crumbs.innerHTML = createNavHtml(id);
         positionDiv(id);
+        fileID = id
         var FileHtml = createFileHtml(id);
        if(FileHtml == ''){
            NoCont.style.display = 'block';
@@ -244,14 +247,12 @@ window.onload = function () {
         regionDiv.style.top = disY + 'px';
         regionDiv.style.left = disX + 'px';
         TabStyleOne.isAppend = false;
-        //  拖动函数
         function moveFn(ev) {
 
             var fanwei = (Math.abs(ev.clientX - disX) > 10 || Math.abs(ev.clientY - disY) > 10)
             if( fanwei &&  !TabStyleOne.isAppend){
-                console.log('超过了范围');
                 document.body.appendChild(regionDiv);
-                TabStyleOne.isAppend = true;  // 已经进来了
+                TabStyleOne.isAppend = true;
             }
 
             regionDiv.style.width = Math.abs(ev.clientX - disX) + 'px';
@@ -259,7 +260,7 @@ window.onload = function () {
             regionDiv.style.left = Math.min(ev.clientX,disX) + 'px';
             regionDiv.style.top = Math.min(ev.clientY,disY) + 'px';
 
-            // 判断是否和文件碰上
+            // 判断一下是否和文件碰上
             if(fanwei){
 
                 for( var i = 0; i < TabStyleOneTable.length; i++ ){
@@ -285,11 +286,10 @@ window.onload = function () {
                     actNum = TabStyleOneTableI.length;
                 }else{
                     contBoxRTopInput.classList.remove('act');
-                    actNum = m;   // 统计选中的
+                    actNum = m;
                 }
             }
         }
-        // 抬起函数
         function upFn() {
             t.off(document,'mousemove', moveFn);
             t.off(document,'mouseup', upFn);
@@ -302,7 +302,27 @@ window.onload = function () {
     });
 
     // 上面一排的功能的交互------------------------
+
+    // 找指定id所有的子孙数据
+    function getChildsAllById(id){
+        //data[id]
+        // 哪一个pid等于id，就是子级
+        var arr = [];
+        for(var attr in data){
+            if(data[attr].pid == id){
+                arr.push(data[attr]);
+                arr = arr.concat(getChildsAllById(attr))
+            }
+        }
+        return arr;
+    }
+    function getChildsAllByIdAndSelf(id){
+        // [].concat(1,[2,3,4,5])
+        return [].concat(data[id],getChildsAllById(id));
+    }
+
     //  删除功能--------------------------------------------------
+
     var delBtn = document.querySelector('.delBtn');
     delBtn.onclick = function () {
         contBoxRTopInput.classList.remove('act');
@@ -313,7 +333,13 @@ window.onload = function () {
                var d= lis[i].children[0].dataset.id;
                pidd = data[d].pid;
                delete  data[d];
-               if(createFileHtml(pidd) == ''){
+                var arr = getChildsAllById(d);
+
+                for(var j = 0;j<arr.length;j++){
+                   delete data[arr[j].id]
+                }
+
+                if(createFileHtml(pidd) == ''){
                    NoCont.style.display = 'block';
                }else {
                    NoCont.style.display = 'none';
@@ -322,13 +348,174 @@ window.onload = function () {
                 crumbs.innerHTML = createNavHtml(pidd);  // 渲染面包屑结构
                 contBoxLeft.innerHTML = createTreeHtml(initId,-1); // 生成左侧结构
                 positionDiv(pidd);
+                actNum = 0;
+                fileID = d
             }
         }
-    }
+    };
 
     //  新建文件夹功能--------------------------------------------
 
     var newFolderBtn = document.querySelector('.newFolderBtn');
+    t.on(newFolderBtn,'mouseup',function () {
+        NoCont.style.display = 'none';
+        var NewLiFile = document.createElement('li'); //  新建节点
+        //  给节点中插入内容
+        NewLiFile.innerHTML = `<div class="TabStyleOneTable">
+                            <div class="wjjImg"><img src="images/wjjimg_03.png"></div>
+                            <div class="wjjTit"></div>
+                            <input type="text" class="wjjInput" value="">
+                            <i></i>
+                        </div>`;
+        TabStyleOne.insertBefore(NewLiFile,TabStyleOne.firstElementChild);
+        var NewLiFileWjjTit = NewLiFile.querySelector('.wjjTit'); // 找到新建 li 中的 文件名
+        var NewLiFileWjjInput = NewLiFile.querySelector('.wjjInput'); //  找到新建li 中的 输入框
+        NewLiFileWjjTit.style.display = 'none';// 让文件夹的名称隐藏
+        NewLiFileWjjInput.style.display = 'block'; //  让新建文件夹的输入框显示
+        NewLiFileWjjInput.focus();   //  自动获取新建文件夹输入框的焦点
+        newFolderBtn.isNewLiFile = true; //  添加一个标识，代表正在新建文件夹中
+
+    });
+
+    function isCunzaiNameById(id,name){
+        var childs = getChildsById(id);
+        for( var i = 0; i < childs.length; i++ ){
+            if(childs[i].title === name){
+                return true;
+            }
+        }
+        return false;
+    }
+    function NewFileFn(ev) {
+        if(newFolderBtn.isNewLiFile){
+            var NewLiFile = TabStyleOne.firstElementChild;
+            var NewLiFileWjjTit = NewLiFile.querySelector('.wjjTit');
+            var NewLiFileWjjInput = NewLiFile.querySelector('.wjjInput');
+            var value = NewLiFileWjjInput.value.trim();
+            if(!value){
+                NewLiFile.remove();
+                var lis = TabStyleOne.querySelectorAll('li');
+               if(lis.length == 0){
+                   NoCont.style.display = 'block';
+               }
+            }else if(isCunzaiNameById(fileID,value)){
+                NewLiFile.remove();
+            }else{
+                NewLiFileWjjTit.style.display = 'block';
+                NewLiFileWjjInput.style.display = 'none';
+                NewLiFileWjjTit.innerHTML = value;
+                // 添加在data中
+                var id = Date.now();
+                var obj = {
+                    id:id,
+                    pid:fileID,
+                    title: value
+                };
+                data[id] = obj;
+                contBoxLeft.innerHTML = createTreeHtml(-1,-1);
+                positionDiv(fileID);
+                NewLiFile.firstElementChild.setAttribute('data-id',id)
+            }
+            newFolderBtn.isNewLiFile = false;
+        }
+    }
+    t.on(document,'mousedown',NewFileFn);
+    t.on(document,'keydown',function (ev){
+        if(ev.keyCode === 13){
+
+            NewFileFn(ev);
+        }
+    });
+
+    //  重命名------------------------------------------
+
+    var rechristenBtn = document.querySelector('.rechristenBtn');
+    var hintSelectFile = document.querySelector('.hintSelectFile');
+    var RelFile = document.querySelector('.RelFile');
+
+    t.on(rechristenBtn,'mouseup',function (ev) {
+       var lis = TabStyleOne.querySelectorAll('li.act');
+        if(lis.length == 0){
+            hintSelectFile.style.opacity = '1';
+            hintSelectFile.style.top = '16px';
+            RelFile.style.opacity = '0';
+            RelFile.style.top = '0';
+        }else if(lis.length >= 2){
+            hintSelectFile.style.opacity = '0';
+            hintSelectFile.style.top = '0';
+            RelFile.style.opacity = '1';
+            RelFile.style.top = '16px';
+        }else {
+            hintSelectFile.style.opacity = '0';
+            hintSelectFile.style.top = '0';
+            RelFile.style.opacity = '0';
+            RelFile.style.top = '0';
+            //  选中了一项
+            var wjjTit = TabStyleOne.querySelector('li.act .wjjTit');
+            var wjjInput = TabStyleOne.querySelector('li.act .wjjInput');
+            wjjTit.style.display = 'none';
+            wjjInput.style.display = 'block';
+            wjjInput.value = wjjTit.innerHTML;
+            wjjInput.focus();
+            rechristenBtn.isRelFile = true;
+        }
+    });
+    t.on(document,'mousedown',function () {
+
+        hintSelectFile.style.opacity = '0';
+        hintSelectFile.style.top = '0';
+        RelFile.style.opacity = '0';
+        RelFile.style.top = '0';
+
+        if(rechristenBtn.isRelFile){
+            var wjjTit = TabStyleOne.querySelector('li.act .wjjTit');
+            var wjjInput = TabStyleOne.querySelector('li.act .wjjInput');
+            var value = wjjInput.value.trim();
+            var liact = TabStyleOne.querySelector('li.act');
+            var id = liact.firstElementChild.dataset.id;
+            if(!value){
+                wjjTit.style.display = 'block';
+                wjjInput.style.display = 'none';
+            }else if(isCunzaiNameById(fileID,value)){
+                wjjTit.style.display = 'block';
+                wjjInput.style.display = 'none';
+            }
+            wjjTit.style.display = 'block';
+            wjjInput.style.display = 'none';
+            wjjTit.innerHTML = wjjInput.value;
+            var title = value;
+            data[id].title = title;
+            contBoxLeft.innerHTML = createTreeHtml(initId,-1);
+        }
+        return
+    })
+
+
+    //  移动到 -----------------------------------------------------
+
+    var moveBtn = document.querySelector('.moveBtn');
+
+    t.on(moveBtn,'mouseup',function (ev) {
+
+        var lis = TabStyleOne.querySelectorAll('li.act');
+
+        if(!lis.length>0){
+            alert('请勾选文件')
+        }else {
+
+            var storageLocation = document.querySelector('.storageLocation');
+            var SLCont = document.querySelector('.SL-cont');
+            SLCont.innerHTML = createTreeHtml(initId,-1);
+            storageLocation.style.display = 'block';
+
+        }
+
+
+
+
+    })
+
+
 
 
 

@@ -18,14 +18,15 @@ em{font-style: normal;color: #52abdb;}
 .wrapTR-User{display: inline-block;vertical-align: middle;position: relative;margin-right: 14px;}
 .wrapTR-User:before{content: '';width: 1px;height: 22px;background: #e0e6e7;position: absolute;right: 0;top: 50%;margin-top: -11px;}
 .wrapTR-User:after{content: '';width: 10px;height: 6px;position: absolute;top: 50%;left: 42px;margin-top: -3px;background: url("../images/jt.png") no-repeat center;}
-.wrapTMid{overflow: hidden;margin-top: 16px;}
-.wrapTMid div{display: inline-block;text-align: center;background: #ef8989;border-radius: 25px;padding: 0 20px;}
+.wrapTMid{overflow: hidden;/*margin-top: 16px;*/position: relative;height: 100%;}
+.wrapTMid div{display: inline-block;text-align: center;background: #ef8989;border-radius: 25px;padding: 0 20px;
+    position: absolute;left: 0;opacity: 0;top: 0;}
 .wrapTMid div em{display: inline-block;height: 40px;line-height: 40px;color: #fff;font-size: 14px;padding-left: 35px;background: no-repeat left center;}
 .wrapTMid .hintConnect em{background-image: url("../images/csico.png")}
 .wrapTMid .hintDelOk{background: #86ce8b;}
 .wrapTMid .hintDelOk em{background-image: url("../images/delico_14.png")}
-.wrapTMid .hintSelectFile em{background-image: url("../images/xzwjico_16.png")}
-.wrapTMid .hintSelectFile{background: #f3a960;}
+.wrapTMid .hintSelectFile em,.wrapTMid .RelFile em{background-image: url("../images/xzwjico_16.png")}
+.wrapTMid .hintSelectFile,.wrapTMid .RelFile{background: #f3a960;}
 
 /*wrapTop  END */
 
@@ -118,7 +119,7 @@ em{font-style: normal;color: #52abdb;}
 .SL-Top{height: 55px;line-height: 55px;position: relative;}
 .SL-TopClose{position: absolute;right: 0;top: 50%;font-style: normal;width: 15px;height: 15px;background: url("../images/close.png") no-repeat center;margin-top: -7.5px;cursor: pointer;}
 .SL-Tit{font-size: 14px;color: #66757f;padding-left: 34px;height: 22px;line-height: 22px;background: url("../images/st-titbg_03.png") no-repeat left center;margin-bottom: 18px;}
-.SL-cont{height: 238px;width: 100%;border:1px #ddd solid;margin-bottom: 25px;}
+.SL-cont{height: 238px;width: 100%;border:1px #ddd solid;margin-bottom: 25px;overflow: auto;}
 .SL-control{text-align: center;}
 .SL-control a{display: inline-block;margin-left: 24px;width: 78px;height: 28px;box-shadow: 0 0 2px #55addc;color: #55addc;line-height: 28px;border-radius: 3px;position: relative;overflow: hidden;}
 .SL-control a:before{content: '';width: 0;position: absolute;left: 50%;top: 0;background:#55addc;height: 100%;opacity: 0;z-index: 1;}
@@ -150,6 +151,7 @@ em{font-style: normal;color: #52abdb;}
 .TabStyleOneTable i.act{border-color: #52abdb;}
 .TabStyleOneTable i.act:before{content: '✔';color: #55addc;position: absolute;top: -2px;left: -1px;}
 .TabStyleOne li:hover .TabStyleOneTable i,.TabStyleOne li.act .TabStyleOneTable i{opacity: 1;}
+.wjjInput{width: 118px;height: 30px;line-height: 30px;text-align: center;border:1px #52abdb solid;border-radius: 2px;display: none;margin:0 auto;}
 
 .regionDiv{width: 0;height:0;background: #52abdb;position: absolute;left: 0;top: 0;opacity: .5;}
 
@@ -158,7 +160,7 @@ em{font-style: normal;color: #52abdb;}
 
 /*缓动*/
 
-:before,:after,a,.funBlockLeft a em,.SL-control a em,.funBlockR-2Top,.funBlockR-1,.funBlockR-2Botm{transition: .4s;}
+:before,:after,a,.funBlockLeft a em,.SL-control a em,.funBlockR-2Top,.funBlockR-1,.funBlockR-2Botm,.wrapTMid div{transition: .4s;}
 
 /*动画*/
 @keyframes deling
