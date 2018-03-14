@@ -40,16 +40,17 @@ window.onload = function () {
     contBoxLeft.innerHTML = createTreeHtml(initId,-1);
 
     //  给左侧菜单加高亮----------------------
-    function positionDiv(id){
+    function positionDiv(id,parent){
+        parent = parent || contBoxLeft;
         // 记录上次
-        if(contBoxLeft.targetSpan){
-            contBoxLeft.targetSpan.classList.remove('divAct')
+        if(parent.targetSpan){
+            parent.targetSpan.classList.remove('divAct')
         }
-        var treeTargetSpan = contBoxLeft.querySelector(`div[data-id="${id}"]`);
+        var treeTargetSpan = parent.querySelector(`div[data-id="${id}"]`);
         treeTargetSpan.classList.add('divAct');
 
         // 在这个元素上自定义一个属性，用来存已经加active的span
-        contBoxLeft.targetSpan = treeTargetSpan;
+        parent.targetSpan = treeTargetSpan;
     }
 
     positionDiv(0); //  执行高亮函数
@@ -190,6 +191,7 @@ window.onload = function () {
         if(target.nodeName == 'INPUT'){
             return
         }
+        contBoxRTopInput.classList.remove('act')
         var id = target.dataset.id;
         crumbs.innerHTML = createNavHtml(id);
         positionDiv(id);
@@ -268,7 +270,6 @@ window.onload = function () {
                     if(t.isDung(regionDiv,TabStyleOneTable[i])){
                         TabStyleOneTable[i].parentNode.classList.add('act');
                         TabStyleOneTable[i].lastElementChild.classList.add('act')
-                        //fileAllI[i].classList.add('checked')
                     }else{
                         TabStyleOneTable[i].parentNode.classList.remove('act');
                         TabStyleOneTable[i].lastElementChild.classList.remove('act')
@@ -456,7 +457,8 @@ window.onload = function () {
             wjjTit.style.display = 'none';
             wjjInput.style.display = 'block';
             wjjInput.value = wjjTit.innerHTML;
-            wjjInput.focus();
+            //wjjInput.focus();
+            wjjInput.select();
             rechristenBtn.isRelFile = true;
         }
     });
@@ -488,36 +490,108 @@ window.onload = function () {
             contBoxLeft.innerHTML = createTreeHtml(initId,-1);
         }
         return
-    })
-
+    });
 
     //  移动到 -----------------------------------------------------
 
     var moveBtn = document.querySelector('.moveBtn');
+    var storageLocation = document.querySelector('.storageLocation');
+    var SLCont = document.querySelector('.SL-cont');
+    var qxBtn = document.querySelector('.qxBtn');
+    var SLTopClose = document.querySelector('.SL-TopClose');
+    var okBtn = document.querySelector('.okBtn');
 
     t.on(moveBtn,'mouseup',function (ev) {
-
         var lis = TabStyleOne.querySelectorAll('li.act');
-
         if(!lis.length>0){
             alert('请勾选文件')
         }else {
-
-            var storageLocation = document.querySelector('.storageLocation');
-            var SLCont = document.querySelector('.SL-cont');
             SLCont.innerHTML = createTreeHtml(initId,-1);
             storageLocation.style.display = 'block';
+            positionDiv(0,SLCont);
+        }
+    });
 
+    //给SLCont 添加点击事件
+
+    t.on(SLCont,'click',function (ev) {
+
+        var target = ev.target;
+
+        if(ev.target.nodeName == 'SPAN'){
+            target = ev.target.parentNode;
+        }else if(ev.target.nodeName == 'EM'){
+            target = ev.target.parentNode.parentNode;
         }
 
+        var id = target.dataset.id;
+        var lis = TabStyleOne.querySelectorAll('li.act');  // 选中的文件
+        positionDiv(id,SLCont);
+
+        var isParent = false;
+        for(var i = 0;i<lis.length;i++){
+            var fileId = lis[i].firstElementChild.dataset.id;
+
+            if(data[fileId].pid== id){
+                alert('文件已经在父级下了，不用移动');
+                isParent = true;
+                break;
+            }
+
+            var childs = getChildsAllByIdAndSelf(fileId);
+
+            var len = childs.filter(function (item){
+                return item.id == id;
+            }).length;
+
+            if(len){
+                alert('不能将文件移动到自身或其子文件夹下');
+                isParent = true;
+                break;
+            }
+        }
+
+        if(!SLCont.isClick){
+            SLCont.isClick = true;
+            //  ok
+            t.on(okBtn,'click',function (ev) {
 
 
+                if(!isParent){
+                    var pidd = ''
+                    for(var i = 0;i<lis.length;i++){
+                        var fileId = lis[i].firstElementChild.dataset.id;
+                        pidd = data[fileId].pid;
+                        data[fileId].pid = id;
 
-    })
+                    }
 
+                    contBoxLeft.innerHTML = createTreeHtml(-1,-1);
+                    TabStyleOne.innerHTML = createFileHtml(pidd);
+                    storageLocation.style.display = 'none';
+                    actNum = 0;
+                    positionDiv(pidd);
+                    contBoxRTopInput.classList.remove('act');
+                    var limove = TabStyleOne.querySelectorAll('li');
 
+                
+                
 
+                    if(limove.length == 0){
+                        NoCont.style.display = 'block';
+                    }
+                }
+                SLCont.isClick = false;
+            })
+        }
+    });
 
+    //  关闭掉
+    function closeSLFn() { // 关闭存储到的函数
+        storageLocation.style.display = 'none';
+    }
+    t.on(qxBtn,'click',closeSLFn);
+    t.on(SLTopClose,'click',closeSLFn)
 
 };
 
