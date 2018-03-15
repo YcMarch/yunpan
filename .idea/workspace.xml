@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77a7050f-1271-49de-b168-50ccd14f310b" name="默认的" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/js/js.js" afterPath="$PROJECT_DIR$/js/js.js" />
       <change beforePath="$PROJECT_DIR$/云盘.html" afterPath="$PROJECT_DIR$/云盘.html" />
@@ -49,6 +50,7 @@
       <find>.wrapTMid div</find>
       <find>SL-cont</find>
       <find>currentId</find>
+      <find>isDel-control</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -66,8 +68,8 @@
         <option value="$PROJECT_DIR$/js/tools.js" />
         <option value="$PROJECT_DIR$/../../秒味课件2018/2018-03-12妙味云盘/js/index.js" />
         <option value="$PROJECT_DIR$/css/css.css" />
-        <option value="$PROJECT_DIR$/云盘.html" />
         <option value="$PROJECT_DIR$/../../秒味课件2018/2018-03-14妙味云盘/js/index.js" />
+        <option value="$PROJECT_DIR$/云盘.html" />
         <option value="$PROJECT_DIR$/js/js.js" />
       </list>
     </option>
@@ -83,6 +85,22 @@
     <option name="y" value="-9" />
     <option name="width" value="1932" />
     <option name="height" value="1048" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -131,7 +149,9 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="copyright.filetypes.Vue.js" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
+    <property name="javascript.nodejs.core.library.configured.version" value="8.9.3" />
+    <property name="nodejs_interpreter_path" value="D:/软件安装位置/nodeJS/node" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -174,11 +194,15 @@
       <workItem from="1520906019073" duration="11985000" />
       <workItem from="1520991118079" duration="11535000" />
       <workItem from="1521030096393" duration="402000" />
+      <workItem from="1521030994796" duration="1167000" />
+      <workItem from="1521078346452" duration="225000" />
+      <workItem from="1521079317045" duration="29000" />
+      <workItem from="1521099741511" duration="2476000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159447000" />
+    <option name="totallyTimeSpent" value="163344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -465,20 +489,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/云盘.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="124" column="79" lean-forward="true" selection-start-line="124" selection-start-column="79" selection-end-line="124" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/js.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="559" column="52" lean-forward="false" selection-start-line="559" selection-start-column="52" selection-end-line="559" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../秒味课件2018/2018-03-14妙味云盘/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
@@ -486,5 +496,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/云盘.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="149" column="41" lean-forward="false" selection-start-line="149" selection-start-column="41" selection-end-line="149" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="451" column="30" lean-forward="false" selection-start-line="451" selection-start-column="30" selection-end-line="451" selection-end-column="30" />
+          <folding>
+            <marker date="1521102226956" expanded="true" signature="1282:1310" ph="..." />
+            <marker date="1521102226956" expanded="true" signature="3299:3708" ph="..." />
+            <marker date="1521102226956" expanded="true" signature="3386:3682" ph="..." />
+            <marker date="1521102226956" expanded="true" signature="13918:14201" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../秒味课件2018/2018-03-14妙味云盘2/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.35772356" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

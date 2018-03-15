@@ -240,6 +240,9 @@ window.onload = function () {
     t.on(TabStyleOne,'mousedown',function (ev) {
 
         if(NoCont.style.display == 'block') return;
+        if(rechristenBtn.isRelFile){
+            return;
+        }
 
         var regionDiv = document.createElement('div');
         regionDiv.classList.add('regionDiv');
@@ -325,26 +328,43 @@ window.onload = function () {
     //  删除功能--------------------------------------------------
 
     var delBtn = document.querySelector('.delBtn');
+    var isDel = document.querySelector('.isDel');
     delBtn.onclick = function () {
+        var lisAct = document.querySelectorAll('.TabStyleOne li.act');
+        if(lisAct.length == 0){
+            hintSelectFile.style.opacity = '1';
+            hintSelectFile.style.top = '16px';
+            RelFile.style.opacity = '0';
+            RelFile.style.top = '0';
+            return;
+        }
+
+        isDel.style.display = 'block';
+    };
+
+    var idDelOk = document.querySelector('.idDelOk');
+    var idDelNo = document.querySelector('.idDelNo');
+    var SLTopCloseDel = document.querySelector('.isDel .SL-TopClose');
+
+    idDelOk.onclick = function () {
         contBoxRTopInput.classList.remove('act');
         var lis = document.querySelectorAll('.TabStyleOne li');
         var pidd = 0;
         for(var i =0;i<lis.length;i++){
             if(lis[i].classList.contains('act')){
-               var d= lis[i].children[0].dataset.id;
-               pidd = data[d].pid;
-               delete  data[d];
+                var d= lis[i].children[0].dataset.id;
+                pidd = data[d].pid;
+                delete  data[d];
                 var arr = getChildsAllById(d);
 
                 for(var j = 0;j<arr.length;j++){
-                   delete data[arr[j].id]
+                    delete data[arr[j].id]
                 }
-
                 if(createFileHtml(pidd) == ''){
-                   NoCont.style.display = 'block';
-               }else {
-                   NoCont.style.display = 'none';
-               }
+                    NoCont.style.display = 'block';
+                }else {
+                    NoCont.style.display = 'none';
+                }
                 TabStyleOne.innerHTML = createFileHtml(pidd); // 渲染右侧结构
                 crumbs.innerHTML = createNavHtml(pidd);  // 渲染面包屑结构
                 contBoxLeft.innerHTML = createTreeHtml(initId,-1); // 生成左侧结构
@@ -353,8 +373,15 @@ window.onload = function () {
                 fileID = d
             }
         }
+        isDel.style.display = 'none';
     };
 
+    t.on(idDelNo,'click',function () {
+        isDel.style.display = 'none';
+    });
+    t.on(SLTopCloseDel,'click',function () {
+        isDel.style.display = 'none';
+    });
     //  新建文件夹功能--------------------------------------------
 
     var newFolderBtn = document.querySelector('.newFolderBtn');
@@ -423,13 +450,10 @@ window.onload = function () {
     t.on(document,'mousedown',NewFileFn);
     t.on(document,'keydown',function (ev){
         if(ev.keyCode === 13){
-
             NewFileFn(ev);
         }
     });
-
     //  重命名------------------------------------------
-
     var rechristenBtn = document.querySelector('.rechristenBtn');
     var hintSelectFile = document.querySelector('.hintSelectFile');
     var RelFile = document.querySelector('.RelFile');
@@ -462,7 +486,13 @@ window.onload = function () {
             rechristenBtn.isRelFile = true;
         }
     });
-    t.on(document,'mousedown',function () {
+    t.on(document,'mousedown',function (ev) {
+
+        var target = ev.target;
+
+        if(target.nodeName == 'INPUT'){
+            return;
+        }
 
         hintSelectFile.style.opacity = '0';
         hintSelectFile.style.top = '0';
@@ -488,6 +518,7 @@ window.onload = function () {
             var title = value;
             data[id].title = title;
             contBoxLeft.innerHTML = createTreeHtml(initId,-1);
+            rechristenBtn.isRelFile = false;
         }
         return
     });
@@ -504,7 +535,10 @@ window.onload = function () {
     t.on(moveBtn,'mouseup',function (ev) {
         var lis = TabStyleOne.querySelectorAll('li.act');
         if(!lis.length>0){
-            alert('请勾选文件')
+                hintSelectFile.style.opacity = '1';
+                hintSelectFile.style.top = '16px';
+                RelFile.style.opacity = '0';
+                RelFile.style.top = '0';
         }else {
             SLCont.innerHTML = createTreeHtml(initId,-1);
             storageLocation.style.display = 'block';
@@ -537,25 +571,19 @@ window.onload = function () {
                 isParent = true;
                 break;
             }
-
             var childs = getChildsAllByIdAndSelf(fileId);
-
             var len = childs.filter(function (item){
                 return item.id == id;
             }).length;
-
             if(len){
                 alert('不能将文件移动到自身或其子文件夹下');
                 isParent = true;
                 break;
             }
         }
-
         if(!SLCont.isClick){
             SLCont.isClick = true;
-            //  ok
             t.on(okBtn,'click',function (ev) {
-
 
                 if(!isParent){
                     var pidd = ''
@@ -574,9 +602,6 @@ window.onload = function () {
                     contBoxRTopInput.classList.remove('act');
                     var limove = TabStyleOne.querySelectorAll('li');
 
-                
-                
-
                     if(limove.length == 0){
                         NoCont.style.display = 'block';
                     }
@@ -592,9 +617,4 @@ window.onload = function () {
     }
     t.on(qxBtn,'click',closeSLFn);
     t.on(SLTopClose,'click',closeSLFn)
-
 };
-
-
-
-
